@@ -17,6 +17,7 @@ import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 import com.hjq.permissions.XXPermissions;
 import com.hjq.permissions.permission.PermissionLists;
+import com.hjq.toast.ToastLogInterceptor;
 import com.hjq.toast.ToastParams;
 import com.hjq.toast.ToastStrategy;
 import com.hjq.toast.Toaster;
@@ -209,4 +210,17 @@ public final class MainActivity extends AppCompatActivity {
                 .setWindowLocation(Gravity.BOTTOM, 0, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()))
                 .show();
     }
+
+    public void skipStacks(View v) {
+        toastTraceAndSkipStacks(getString(R.string.demo_show_toast_with_trace_and_skip_stacks_result));
+    }
+
+    // 在封装方法使用 Toaster 时，Logcat 打印的代码调用定位，可跳过指定的调用栈数，直接定位到业务调用的位置
+    private void toastTraceAndSkipStacks(String message) {
+        ToastParams params = new ToastParams();
+        params.text = message;
+        params.interceptor = new ToastLogInterceptor(1); // 根据实际情况调整调用栈数，每一层封装方法就是一个调用栈
+        Toaster.show(params);
+    }
+
 }

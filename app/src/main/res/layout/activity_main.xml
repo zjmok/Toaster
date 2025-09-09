@@ -28,13 +28,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingVertical="20dp">
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
                     android:onClick="showToast"
                     android:text="@string/demo_show_toast" />
 
@@ -174,9 +174,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
                     android:onClick="combinationEasyWindowShow"
                     android:text="@string/demo_combining_window_framework_use" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:onClick="skipStacks"
+                    android:text="@string/demo_show_toast_with_trace_and_skip_stacks" />
 
             </LinearLayout>
 
