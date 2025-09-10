@@ -31,8 +31,17 @@ implementation("com.github.zjmok:Toaster:release-SNAPSHOT")
 
 ### 调用定位跳过调用栈数
 
-拦截器 `ToastLogInterceptor` 新增构造方法 `ToastLogInterceptor(int stackSkips)`，
-在封装方法使用 Toaster 时，Logcat 打印的调用定位，可跳过指定的调用栈数，直接定位到业务调用的位置
+拦截器 `ToastLogInterceptor` 新增带参数 `stackSkips` 的构造方法， 
+在封装方法使用 Toaster 时，根据给定的 `stackSkips` 决定如何打印的调用定位
+
+```java
+/**
+ * @param stackSkips 打印调用栈时，跳过的调用栈数。 0 表示不跳过，小于 0 表示不打印调用栈，大于 0 表示跳过指定数目的调用栈
+ */
+ToastLogInterceptor(int stackSkips) { /* */ }
+```
+
+`stackSkips` 0 表示不跳过，小于 0 表示不打印调用栈，大于 0 表示跳过指定数目的调用栈
 
 - 使用示例
 
