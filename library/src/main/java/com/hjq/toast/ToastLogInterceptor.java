@@ -21,7 +21,7 @@ public class ToastLogInterceptor implements IToastInterceptor {
     }
 
     /**
-     * @param stackSkips 打印调用栈时，跳过的调用栈数
+     * @param stackSkips 打印调用栈时，跳过的调用栈数。 0 表示不跳过，小于 0 表示不打印调用栈，大于 0 表示跳过指定数目的调用栈
      */
     public ToastLogInterceptor(int stackSkips) {
         this.stackSkips = stackSkips;
@@ -35,6 +35,12 @@ public class ToastLogInterceptor implements IToastInterceptor {
 
     protected void printToast(CharSequence text) {
         if (!isLogEnable()) {
+            return;
+        }
+
+        if (stackSkips < 0) {
+            // 不打印调用栈信息，直接打印 text 内容
+            printLog(text.toString());
             return;
         }
 
